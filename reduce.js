@@ -46,6 +46,17 @@ const teamMembers = [
 ];
 
 // Totaling a specific object property
-
+const totalExperience = teamMembers.reduce((acc, curr) => acc + curr.yrsExperience, 0);
+console.log(totalExperience);
 
 // Grouping by a property, and totaling it too
+// {Developer: 12, Designer: 4} <-- This is what we want!
+let experienceByProfession = teamMembers.reduce((acc, curr) => { //as needs few lines of code and return stmt
+  let key = curr.profession;
+  if (!acc[key]) { //Need to check if key already exists in the object accumulating into, If not set it to current years exp. 
+    acc[key] = curr.yrsExperience;
+  } else {
+    acc[key] += curr //if does exist add current members experience to existing value. 
+  }
+  return acc; 
+}, {}) // Second set of {} is initial value of an empty object
